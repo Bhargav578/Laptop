@@ -105,6 +105,15 @@ namespace Laptop
             Response.Redirect("Checkout.aspx");
         }
 
-        
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string[] arguments = e.CommandArgument.ToString().Split(';');
+            int productId = Convert.ToInt32(arguments[0]);
+            int clickedIndex = Convert.ToInt32(arguments[1]);
+            TextBox txtQuantity = (TextBox)GridView1.Rows[clickedIndex].FindControl("txtQuantity");
+            int quantity = Convert.ToInt32(txtQuantity.Text);
+
+           
+        }
     }
 }
