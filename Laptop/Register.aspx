@@ -11,6 +11,7 @@
                       <h2 class="ec-bg-title">Register</h2>
                       <h2 class="ec-title">Register</h2>
                   </div>
+
               </div>
               <div class="ec-register-wrapper">
                   <div class="ec-register-container">
