@@ -18,6 +18,7 @@
                                 <li class="ec-breadcrumb-item active">Cart</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
+
                         </div>
                     </div>
                 </div>
