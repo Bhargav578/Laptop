@@ -1,0 +1,1507 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterPage.master.cs" Inherits="Laptop.Admin.AdminMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <!DOCTYPE html>
+                <html lang="en" dir="ltr">
+
+                <head>
+                    <meta charset="utf-8" />
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <meta name="description" content="Ekka - Admin Dashboard eCommerce HTML Template.">
+
+                    <title>Ekka - Admin Dashboard eCommerce HTML Template.</title>
+
+                    <!-- GOOGLE FONTS -->
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+                    <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
+
+                    <!-- PLUGINS CSS STYLE -->
+                    <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+                    <link href="assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
+
+                    <!-- Ekka CSS -->
+                    <link id="ekka-css" href="assets/css/ekka.css" rel="stylesheet" />
+
+                    <!-- FAVICON -->
+                    <link href="assets/img/favicon.png" rel="shortcut icon" />
+
+                    <!-- Custom Enhanced CSS -->
+                    <style>
+                        /* ========================================
+                           Custom Enhanced Admin Dashboard CSS
+                           ======================================== */
+
+                        /* Root Variables */
+                        :root {
+                            --primary-color: #3b82f6;
+                            --secondary-color: #6366f1;
+                            --success-color: #10b981;
+                            --danger-color: #ef4444;
+                            --warning-color: #f59e0b;
+                            --info-color: #06b6d4;
+                            --dark-color: #1f2937;
+                            --light-color: #f9fafb;
+                            --sidebar-bg: #ffffff;
+                            --sidebar-width: 260px;
+                            --header-height: 70px;
+                            --transition-speed: 0.3s;
+                        }
+
+                        /* Global Styles */
+                        * {
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                        }
+
+                        body {
+                            font-family: 'Poppins', 'Roboto', sans-serif;
+                            font-size: 14px;
+                            color: #4b5563;
+                            background-color: #f3f4f6;
+                            overflow-x: hidden;
+                        }
+
+                        /* Smooth Scrollbar */
+                        ::-webkit-scrollbar {
+                            width: 8px;
+                            height: 8px;
+                        }
+
+                        ::-webkit-scrollbar-track {
+                            background: #f1f1f1;
+                        }
+
+                        ::-webkit-scrollbar-thumb {
+                            background: #cbd5e1;
+                            border-radius: 4px;
+                        }
+
+                            ::-webkit-scrollbar-thumb:hover {
+                                background: #94a3b8;
+                            }
+
+                        /* Sidebar Styles */
+                        .ec-left-sidebar {
+                            position: fixed;
+                            left: 0;
+                            top: 0;
+                            width: var(--sidebar-width);
+                            height: 100vh;
+                            background: var(--sidebar-bg);
+                            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.08);
+                            transition: all var(--transition-speed) ease;
+                            z-index: 1000;
+                        }
+
+                        .ec-brand {
+                            height: var(--header-height);
+                            display: flex;
+                            align-items: center;
+                            padding: 0 20px;
+                            border-bottom: 1px solid #e5e7eb;
+                            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                        }
+
+                            .ec-brand a {
+                                display: flex;
+                                align-items: center;
+                                text-decoration: none;
+                                gap: 12px;
+                            }
+
+                        .ec-brand-icon {
+                            width: 40px;
+                            height: 40px;
+                            object-fit: contain;
+                            filter: brightness(0) invert(1);
+                        }
+
+                        .ec-brand-name {
+                            font-size: 20px;
+                            font-weight: 700;
+                            color: #ffffff;
+                            letter-spacing: 0.5px;
+                        }
+
+                        /* Sidebar Navigation */
+                        .ec-navigation {
+                            height: calc(100vh - var(--header-height));
+                            overflow-y: auto;
+                            padding: 20px 0;
+                        }
+
+                        .sidebar-inner {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                            .sidebar-inner > li {
+                                margin-bottom: 5px;
+                            }
+
+                        .sidenav-item-link {
+                            display: flex;
+                            align-items: center;
+                            padding: 12px 20px;
+                            color: #6b7280;
+                            text-decoration: none;
+                            transition: all 0.2s ease;
+                            position: relative;
+                            font-weight: 500;
+                        }
+
+                            .sidenav-item-link:hover {
+                                background-color: #f3f4f6;
+                                color: var(--primary-color);
+                                padding-left: 25px;
+                            }
+
+                            .sidenav-item-link i {
+                                font-size: 20px;
+                                margin-right: 12px;
+                                width: 24px;
+                                text-align: center;
+                            }
+
+                        .sidebar-inner > li.active .sidenav-item-link {
+                            background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+                            color: var(--primary-color);
+                            border-left: 3px solid var(--primary-color);
+                            font-weight: 600;
+                        }
+
+                        /* Sub Menu */
+                        .has-sub .collapse {
+                            display: none;
+                        }
+
+                        .has-sub.show .collapse {
+                            display: block;
+                        }
+
+                        .sub-menu {
+                            list-style: none;
+                            padding: 5px 0 5px 45px;
+                            margin: 0;
+                            background-color: #f9fafb;
+                        }
+
+                            .sub-menu li a {
+                                display: block;
+                                padding: 10px 20px;
+                                color: #6b7280;
+                                text-decoration: none;
+                                font-size: 13px;
+                                transition: all 0.2s ease;
+                                border-radius: 6px;
+                                margin: 2px 10px;
+                            }
+
+                                .sub-menu li a:hover {
+                                    background-color: #eff6ff;
+                                    color: var(--primary-color);
+                                    padding-left: 25px;
+                                }
+
+                        .caret {
+                            margin-left: auto;
+                            transition: transform 0.3s ease;
+                            border: solid var(--primary-color);
+                            border-width: 0 2px 2px 0;
+                            display: inline-block;
+                            padding: 3px;
+                            transform: rotate(45deg);
+                        }
+
+                        .has-sub.show .caret {
+                            transform: rotate(-135deg);
+                        }
+
+                        .sidebar-inner hr {
+                            margin: 15px 20px;
+                            border: none;
+                            border-top: 1px solid #e5e7eb;
+                        }
+
+                        /* Header Styles */
+                        .ec-main-header {
+                            position: fixed;
+                            top: 0;
+                            left: var(--sidebar-width);
+                            right: 0;
+                            height: var(--header-height);
+                            background: #ffffff;
+                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                            z-index: 999;
+                            transition: all var(--transition-speed) ease;
+                        }
+
+                        .navbar {
+                            height: 100%;
+                            padding: 0 30px;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        /* Sidebar Toggle Button */
+                        .sidebar-toggle {
+                            background: none;
+                            border: none;
+                            width: 40px;
+                            height: 40px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+                            border-radius: 8px;
+                            transition: all 0.2s ease;
+                        }
+
+                            .sidebar-toggle:hover {
+                                background-color: #f3f4f6;
+                            }
+
+                            .sidebar-toggle::before {
+                                content: '☰';
+                                font-size: 24px;
+                                color: #4b5563;
+                            }
+
+                        /* Search Form */
+                        .search-form {
+                            margin-left: 20px;
+                            position: relative;
+                        }
+
+                            .search-form .input-group {
+                                display: flex;
+                                align-items: center;
+                                background: #f3f4f6;
+                                border-radius: 25px;
+                                padding: 0 15px;
+                                width: 350px;
+                                transition: all 0.3s ease;
+                            }
+
+                                .search-form .input-group:focus-within {
+                                    background: #ffffff;
+                                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                                }
+
+                            .search-form input {
+                                border: none;
+                                background: transparent;
+                                padding: 10px 12px;
+                                outline: none;
+                                flex: 1;
+                                font-size: 14px;
+                            }
+
+                            .search-form button {
+                                background: none;
+                                border: none;
+                                color: #6b7280;
+                                cursor: pointer;
+                                padding: 8px;
+                                border-radius: 50%;
+                                transition: all 0.2s ease;
+                            }
+
+                                .search-form button:hover {
+                                    background-color: var(--primary-color);
+                                    color: white;
+                                }
+
+                        #search-results-container {
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            right: 0;
+                            background: white;
+                            border-radius: 12px;
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                            margin-top: 10px;
+                            display: none;
+                            max-height: 400px;
+                            overflow-y: auto;
+                        }
+
+                        /* Navbar Right */
+                        .navbar-right {
+                            margin-left: auto;
+                        }
+
+                        .navbar-nav {
+                            display: flex;
+                            align-items: center;
+                            list-style: none;
+                            gap: 15px;
+                            margin: 0;
+                        }
+
+                        /* User Account Dropdown */
+                        .user-menu {
+                            position: relative;
+                        }
+
+                            .user-menu button,
+                            .user-menu .ec-drop {
+                                background: none;
+                                border: none;
+                                padding: 0;
+                                cursor: pointer;
+                            }
+
+                        .user-image {
+                            width: 42px;
+                            height: 42px;
+                            border-radius: 50%;
+                            border: 2px solid #e5e7eb;
+                            transition: all 0.2s ease;
+                        }
+
+                            .user-image:hover {
+                                border-color: var(--primary-color);
+                                transform: scale(1.05);
+                            }
+
+                        /* Dropdown Menu */
+                        .dropdown-menu {
+                            min-width: 250px;
+                            border: none;
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                            border-radius: 12px;
+                            padding: 10px;
+                            margin-top: 10px;
+                            display: none;
+                            position: absolute;
+                            top: 100%;
+                            right: 0;
+                            background: white;
+                            z-index: 1000;
+                        }
+
+                        .dropdown.show .dropdown-menu {
+                            display: block;
+                        }
+
+                        .dropdown-header {
+                            padding: 15px;
+                            border-bottom: 1px solid #e5e7eb;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                        }
+
+                            .dropdown-header .img-circle {
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                            }
+
+                            .dropdown-header .d-inline-block {
+                                display: flex;
+                                flex-direction: column;
+                            }
+
+                            .dropdown-header small {
+                                font-size: 12px;
+                                color: #9ca3af;
+                            }
+
+                        .dropdown-menu li a {
+                            display: flex;
+                            align-items: center;
+                            padding: 10px 15px;
+                            color: #4b5563;
+                            text-decoration: none;
+                            border-radius: 8px;
+                            transition: all 0.2s ease;
+                            margin: 3px 0;
+                        }
+
+                            .dropdown-menu li a:hover {
+                                background-color: #f3f4f6;
+                                color: var(--primary-color);
+                            }
+
+                            .dropdown-menu li a i {
+                                margin-right: 10px;
+                                font-size: 18px;
+                            }
+
+                        .dropdown-footer a {
+                            color: var(--danger-color);
+                            font-weight: 600;
+                        }
+
+                        /* Notifications */
+                        .notifications-menu,
+                        .custom-dropdown {
+                            position: relative;
+                        }
+
+                            .notifications-menu button,
+                            .custom-dropdown-toggler {
+                                background: none;
+                                border: none;
+                                position: relative;
+                                cursor: pointer;
+                                width: 42px;
+                                height: 42px;
+                                border-radius: 50%;
+                                transition: all 0.2s ease;
+                            }
+
+                                .notifications-menu button:hover,
+                                .custom-dropdown-toggler:hover {
+                                    background-color: #f3f4f6;
+                                }
+
+                            .notifications-menu i {
+                                font-size: 22px;
+                                color: #6b7280;
+                            }
+
+                            /* Notification Badge */
+                            .notifications-menu button::after {
+                                content: '';
+                                position: absolute;
+                                top: 8px;
+                                right: 8px;
+                                background: var(--danger-color);
+                                width: 10px;
+                                height: 10px;
+                                border-radius: 50%;
+                                border: 2px solid white;
+                            }
+
+                        /* Page Wrapper */
+                        .ec-page-wrapper {
+                            margin-left: var(--sidebar-width);
+                            padding-top: var(--header-height);
+                            min-height: 100vh;
+                            transition: all var(--transition-speed) ease;
+                        }
+
+                        /* Card Styles */
+                        .card {
+                            background: #ffffff;
+                            border-radius: 12px;
+                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                            border: none;
+                            margin-bottom: 20px;
+                        }
+
+                        .card-header {
+                            background: transparent;
+                            border-bottom: 1px solid #e5e7eb;
+                            padding: 20px;
+                            font-weight: 600;
+                            font-size: 16px;
+                        }
+
+                        .card-body {
+                            padding: 20px;
+                        }
+
+                        /* Notification Card */
+                        .dropdown-notify {
+                            width: 380px;
+                            max-height: 500px;
+                            display: none;
+                            position: absolute;
+                            top: 100%;
+                            right: 0;
+                            margin-top: 10px;
+                        }
+
+                        .dropdown.show .dropdown-notify {
+                            display: block;
+                        }
+
+                        .card-default {
+                            background: white;
+                            border-radius: 12px;
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                        }
+
+                        .card-header-border-bottom {
+                            border-bottom: 1px solid #e5e7eb;
+                        }
+
+                        .nav-tabs {
+                            border-bottom: 1px solid #e5e7eb;
+                        }
+
+                            .nav-tabs .nav-link {
+                                color: #6b7280;
+                                border: none;
+                                padding: 12px 0;
+                            }
+
+                                .nav-tabs .nav-link.active {
+                                    color: var(--primary-color);
+                                    border-bottom: 2px solid var(--primary-color);
+                                }
+
+                        .media-notification {
+                            padding: 15px;
+                            border-bottom: 1px solid #f3f4f6;
+                            transition: all 0.2s ease;
+                            display: flex;
+                            text-decoration: none;
+                            color: inherit;
+                        }
+
+                            .media-notification:hover {
+                                background-color: #f9fafb;
+                            }
+
+                        .media-active {
+                            background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), transparent);
+                            border-left: 3px solid var(--primary-color);
+                        }
+
+                        .position-relative {
+                            position: relative;
+                        }
+
+                        .mr-3 {
+                            margin-right: 15px;
+                        }
+
+                        .rounded-circle {
+                            border-radius: 50%;
+                        }
+
+                        .status {
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                            width: 12px;
+                            height: 12px;
+                            border-radius: 50%;
+                            border: 2px solid white;
+                        }
+
+                            .status.active {
+                                background-color: var(--success-color);
+                            }
+
+                            .status.away {
+                                background-color: var(--warning-color);
+                            }
+
+                        .media-body {
+                            flex: 1;
+                        }
+
+                        .message-contents h4 {
+                            font-size: 14px;
+                            font-weight: 600;
+                            margin-bottom: 5px;
+                        }
+
+                        .message-contents p {
+                            font-size: 13px;
+                            color: #6b7280;
+                            margin-bottom: 5px;
+                        }
+
+                        .media-icon {
+                            width: 45px;
+                            height: 45px;
+                        }
+
+                        .iconbox-45 {
+                            width: 45px;
+                            height: 45px;
+                        }
+
+                        .bg-info {
+                            background-color: var(--info-color);
+                        }
+
+                        .bg-warning {
+                            background-color: var(--warning-color);
+                        }
+
+                        .bg-primary {
+                            background-color: var(--primary-color);
+                        }
+
+                        .bg-danger {
+                            background-color: var(--danger-color);
+                        }
+
+                        .bg-purple {
+                            background-color: #8b5cf6;
+                        }
+
+                        .text-white {
+                            color: white;
+                        }
+
+                        .text-secondary {
+                            color: #6b7280;
+                        }
+
+                        .font-size-12 {
+                            font-size: 12px;
+                        }
+
+                        .font-size-14 {
+                            font-size: 14px;
+                        }
+
+                        .font-size-20 {
+                            font-size: 20px;
+                        }
+
+                        .font-weight-medium {
+                            font-weight: 500;
+                        }
+
+                        .d-flex {
+                            display: flex;
+                        }
+
+                        .justify-content-between {
+                            justify-content: space-between;
+                        }
+
+                        .align-items-center {
+                            align-items: center;
+                        }
+
+                        .d-block {
+                            display: block;
+                        }
+
+                        .my-1 {
+                            margin-top: 0.25rem;
+                            margin-bottom: 0.25rem;
+                        }
+
+                        .btn {
+                            padding: 6px 12px;
+                            border-radius: 6px;
+                            border: none;
+                            cursor: pointer;
+                            font-size: 13px;
+                            transition: all 0.2s ease;
+                        }
+
+                        .btn-sm {
+                            padding: 4px 10px;
+                            font-size: 12px;
+                        }
+
+                        .btn-success {
+                            background-color: var(--success-color);
+                            color: white;
+                        }
+
+                        .btn-secondary {
+                            background-color: #6b7280;
+                            color: white;
+                        }
+
+                        .btn:hover {
+                            opacity: 0.9;
+                            transform: translateY(-1px);
+                        }
+
+                        /* Settings Icon */
+                        .right-sidebar-in i,
+                        .right-sidebar-2-menu i {
+                            font-size: 22px;
+                            color: #6b7280;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        }
+
+                        .right-sidebar-in:hover i,
+                        .right-sidebar-2-menu:hover i {
+                            color: var(--primary-color);
+                            transform: rotate(90deg);
+                        }
+
+                        /* Footer */
+                        .footer {
+                            background: #ffffff;
+                            border-top: 1px solid #e5e7eb;
+                            padding: 20px 30px;
+                            margin-top: auto;
+                        }
+
+                        .copyright {
+                            text-align: center;
+                            color: #6b7280;
+                            font-size: 13px;
+                        }
+
+                            .copyright a {
+                                color: var(--primary-color);
+                                text-decoration: none;
+                                font-weight: 600;
+                            }
+
+                        .mt-auto {
+                            margin-top: auto;
+                        }
+
+                        .bg-white {
+                            background-color: white;
+                        }
+
+                        /* Responsive Styles */
+                        @media (max-width: 991px) {
+                            .ec-left-sidebar {
+                                transform: translateX(-100%);
+                            }
+
+                                .ec-left-sidebar.show {
+                                    transform: translateX(0);
+                                }
+
+                            .ec-main-header {
+                                left: 0;
+                            }
+
+                            .ec-page-wrapper {
+                                margin-left: 0;
+                            }
+
+                            .search-form .input-group {
+                                width: 200px;
+                            }
+                        }
+
+                        @media (max-width: 576px) {
+                            .search-form {
+                                display: none;
+                            }
+
+                            .navbar {
+                                padding: 0 15px;
+                            }
+
+                            .dropdown-notify {
+                                width: 320px;
+                            }
+                        }
+
+                        /* Animation Classes */
+                        @keyframes fadeIn {
+                            from {
+                                opacity: 0;
+                                transform: translateY(10px);
+                            }
+
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+
+                        .fade-in {
+                            animation: fadeIn 0.3s ease;
+                        }
+
+                        /* Utility Classes */
+                        .text-primary {
+                            color: var(--primary-color) !important;
+                        }
+
+                        .text-truncate {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+
+                        .d-inline-block {
+                            display: inline-block;
+                        }
+
+                        .text-center {
+                            text-align: center;
+                        }
+
+                        .pt-1 {
+                            padding-top: 0.25rem;
+                        }
+
+                        .px-3 {
+                            padding-left: 1rem;
+                            padding-right: 1rem;
+                        }
+
+                        .px-0 {
+                            padding-left: 0;
+                            padding-right: 0;
+                        }
+
+                        .py-0 {
+                            padding-top: 0;
+                            padding-bottom: 0;
+                        }
+
+                        .mx-3 {
+                            margin-left: 1rem;
+                            margin-right: 1rem;
+                        }
+
+                        .my-0 {
+                            margin-top: 0;
+                            margin-bottom: 0;
+                        }
+
+                        .mb-0 {
+                            margin-bottom: 0;
+                        }
+
+                        .pb-3 {
+                            padding-bottom: 1rem;
+                        }
+
+                        .p-0 {
+                            padding: 0;
+                        }
+
+                        .list-unstyled {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        .tab-pane {
+                            display: none;
+                        }
+
+                            .tab-pane.show {
+                                display: block;
+                            }
+
+                            .tab-pane.active {
+                                display: block;
+                            }
+
+                        .fade {
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                        }
+
+                            .fade.show {
+                                opacity: 1;
+                            }
+
+                        .d-none {
+                            display: none !important;
+                        }
+
+                        .float-right {
+                            float: right;
+                        }
+                    </style>
+
+                </head>
+
+                <body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-light ec-header-light" id="body">
+
+                    <!--  WRAPPER  -->
+                    <div class="wrapper">
+
+                        <!-- LEFT MAIN SIDEBAR -->
+                        <div class="ec-left-sidebar ec-bg-sidebar">
+                            <div id="sidebar" class="sidebar ec-sidebar-footer">
+
+                                <div class="ec-brand">
+                                    <a href="index.aspx" title="Ekka">
+                                        <img class="ec-brand-icon" src="assets/img/logo/ec-site-logo.png" alt="" />
+                                        <span class="ec-brand-name text-truncate">Ekka</span>
+                                    </a>
+                                </div>
+
+                                <!-- begin sidebar scrollbar -->
+                                <div class="ec-navigation" data-simplebar>
+                                    <!-- sidebar menu -->
+                                    <ul class="nav sidebar-inner" id="sidebar-menu">
+                                        <!-- Dashboard -->
+                                        <li class="active">
+                                            <a class="sidenav-item-link" href="index.aspx">
+                                                <i class="mdi mdi-view-dashboard-outline"></i>
+                                                <span class="nav-text">Dashboard</span>
+                                            </a>
+                                            <hr>
+                                        </li>
+
+                                        <!-- Users -->
+                                        <li class="has-sub">
+                                            <a class="sidenav-item-link" href="javascript:void(0)">
+                                                <i class="mdi mdi-account-group-outline"></i>
+                                                <span class="nav-text">Users</span> <b class="caret"></b>
+                                            </a>
+                                            <div class="collapse">
+                                                <ul class="sub-menu" id="users" data-parent="#sidebar-menu">
+                                                    <li>
+                                                        <a class="sidenav-item-link" href="AddUser.aspx">
+                                                            <span class="nav-text">Add User</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <a class="sidenav-item-link" href="Users.aspx">
+                                                            <span class="nav-text">User List</span>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <hr>
+                                        </li>
+
+                                        <!-- Category -->
+                                        <li class="has-sub">
+                                            <a class="sidenav-item-link" href="javascript:void(0)">
+                                                <i class="mdi mdi-dns-outline"></i>
+                                                <span class="nav-text">Categories</span> <b class="caret"></b>
+                                            </a>
+                                            <div class="collapse">
+                                                <ul class="sub-menu" id="categorys" data-parent="#sidebar-menu">
+                                                    <li class="">
+                                                        <a class="sidenav-item-link" href="Categories.aspx">
+                                                            <span class="nav-text">Main Category</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <!-- Products -->
+                                        <li class="has-sub">
+                                            <a class="sidenav-item-link" href="javascript:void(0)">
+                                                <i class="mdi mdi-palette-advanced"></i>
+                                                <span class="nav-text">Products</span> <b class="caret"></b>
+                                            </a>
+                                            <div class="collapse">
+                                                <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
+                                                    <li class="">
+                                                        <a class="sidenav-item-link" href="AddProduct.aspx">
+                                                            <span class="nav-text">Add Product</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a class="sidenav-item-link" href="Products.aspx">
+                                                            <span class="nav-text">List Product</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+
+                                        <!-- Brands -->
+                                        <li>
+                                            <a class="sidenav-item-link" href="Brands.aspx">
+                                                <i class="mdi mdi-tag-faces"></i>
+                                                <span class="nav-text">Brands</span>
+                                            </a>
+                                            <hr>
+                                        </li>
+
+                                       
+                                        <!-- Authentication -->
+                                        <li class="has-sub">
+                                            <a class="sidenav-item-link" href="javascript:void(0)">
+                                                <i class="mdi mdi-login"></i>
+                                                <span class="nav-text">Authentication</span> <b class="caret"></b>
+                                            </a>
+                                            <div class="collapse">
+                                                <ul class="sub-menu" id="authentication" data-parent="#sidebar-menu">
+                                                    <li class="">
+                                                        <a href="../SignIn.aspx">
+                                                            <span class="nav-text">Sign In</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="../Register.aspx">
+                                                            <span class="nav-text">Sign Up</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  PAGE WRAPPER -->
+                        <div class="ec-page-wrapper">
+
+                            <!-- Header -->
+                            <header class="ec-main-header" id="header">
+                                <nav class="navbar navbar-static-top navbar-expand-lg">
+                                    <!-- Sidebar toggle button -->
+                                    <button id="sidebar-toggler" class="sidebar-toggle"></button>
+                                    <!-- search form -->
+                                    <div class="search-form d-lg-inline-block">
+                                        <div class="input-group">
+                                            <input type="text" name="query" id="search-input" class="form-control"
+                                                placeholder="search.." autofocus autocomplete="off" />
+                                            <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                                                <i class="mdi mdi-magnify"></i>
+                                            </button>
+                                        </div>
+                                        <div id="search-results-container">
+                                            <ul id="search-results"></ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- navbar right -->
+                                    <div class="navbar-right">
+                                        <ul class="nav navbar-nav">
+                                            <!-- User Account -->
+                                            <li class="dropdown user-menu">
+                                                <button class="dropdown-toggle nav-link ec-drop" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    <img src="assets/img/user/user.png" class="user-image" alt="User Image" />
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-right ec-dropdown-menu">
+                                                    <!-- User image -->
+                                                    <li class="dropdown-header">
+                                                        <img src="assets/img/user/user.png" class="img-circle" alt="User Image" />
+                                                        <div class="d-inline-block">
+                                                            John Deo <small class="pt-1">john.example@gmail.com</small>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <a href="user-profile.aspx">
+                                                            <i class="mdi mdi-account"></i>My Profile
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="mdi mdi-email"></i>Message
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="mdi mdi-diamond-stone"></i>Projects </a>
+                                                    </li>
+                                                    <li class="right-sidebar-in">
+                                                        <a href="javascript:0"><i class="mdi mdi-settings-outline"></i>Setting </a>
+                                                    </li>
+                                                    <li class="dropdown-footer">
+                                                        <a href="../SignIn.aspx"><i class="mdi mdi-logout"></i>Log Out </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown notifications-menu custom-dropdown">
+                                                <button class="dropdown-toggle notify-toggler custom-dropdown-toggler">
+                                                    <i class="mdi mdi-bell-outline"></i>
+                                                </button>
+
+                                                <div class="card card-default dropdown-notify dropdown-menu-right mb-0">
+                                                    <div class="card-header card-header-border-bottom px-3">
+                                                        <h2>Notifications</h2>
+                                                    </div>
+
+                                                    <div class="card-body px-0 py-0">
+                                                        <ul class="nav nav-tabs nav-style-border p-0 justify-content-between" id="myTab"
+                                                            role="tablist">
+                                                            <li class="nav-item mx-3 my-0 py-0">
+                                                                <a href="#" class="nav-link active pb-3" id="home2-tab"
+                                                                    data-bs-toggle="tab" data-bs-target="#home2" role="tab"
+                                                                    aria-controls="home2" aria-selected="true">All (10)</a>
+                                                            </li>
+
+                                                            <li class="nav-item mx-3 my-0 py-0">
+                                                                <a href="#" class="nav-link pb-3" id="profile2-tab" data-bs-toggle="tab"
+                                                                    data-bs-target="#profile2" role="tab" aria-controls="profile2"
+                                                                    aria-selected="false">Msgs (5)</a>
+                                                            </li>
+
+                                                            <li class="nav-item mx-3 my-0 py-0">
+                                                                <a href="#" class="nav-link pb-3" id="contact2-tab" data-bs-toggle="tab"
+                                                                    data-bs-target="#contact2" role="tab" aria-controls="contact2"
+                                                                    aria-selected="false">Others (5)</a>
+                                                            </li>
+                                                        </ul>
+
+                                                        <div class="tab-content" id="myNotifications">
+                                                            <div class="tab-pane fade show active" id="home2" role="tabpanel">
+                                                                <ul class="list-unstyled" data-simplebar style="height: 360px">
+                                                                    <li>
+                                                                        <a href="javscript:void(0)"
+                                                                            class="media media-message media-notification">
+                                                                            <div class="position-relative mr-3">
+                                                                                <img class="rounded-circle" src="assets/img/user/u2.jpg"
+                                                                                    alt="Image">
+                                                                                <span class="status away"></span>
+                                                                            </div>
+                                                                            <div class="media-body d-flex justify-content-between">
+                                                                                <div class="message-contents">
+                                                                                    <h4 class="title">Nitin</h4>
+                                                                                    <p class="last-msg">
+                                                                                        Lorem ipsum dolor sit, amet
+																		consectetur adipisicing elit. Nam itaque
+																		doloremque odio, eligendi delectus vitae.
+                                                                                    </p>
+
+                                                                                    <span
+                                                                                        class="font-size-12 font-weight-medium text-secondary">
+                                                                                        <i class="mdi mdi-clock-outline"></i>30 min
+																		ago...
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <a href="javscript:void(0)"
+                                                                            class="media media-message media-notification media-active">
+                                                                            <div class="position-relative mr-3">
+                                                                                <img class="rounded-circle" src="assets/img/user/u1.jpg"
+                                                                                    alt="Image">
+                                                                                <span class="status active"></span>
+                                                                            </div>
+                                                                            <div class="media-body d-flex justify-content-between">
+                                                                                <div class="message-contents">
+                                                                                    <h4 class="title">Lovina</h4>
+                                                                                    <p class="last-msg">
+                                                                                        Donec mattis augue a nisl
+																		consequat, nec imperdiet ex rutrum. Fusce et
+																		vehicula enim. Sed in enim eu odio vehic.
+                                                                                    </p>
+
+                                                                                    <span
+                                                                                        class="font-size-12 font-weight-medium text-white">
+                                                                                        <i class="mdi mdi-clock-outline"></i>Just
+																		now...
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <a href="javscript:void(0)"
+                                                                            class="media media-message media-notification">
+                                                                            <div class="position-relative mr-3">
+                                                                                <img class="rounded-circle" src="assets/img/user/u5.jpg"
+                                                                                    alt="Image">
+                                                                                <span class="status away"></span>
+                                                                            </div>
+                                                                            <div class="media-body d-flex justify-content-between">
+                                                                                <div class="message-contents">
+                                                                                    <h4 class="title">Crinali</h4>
+                                                                                    <p class="last-msg">
+                                                                                        Lorem ipsum dolor sit, amet
+																		consectetur adipisicing elit. Nam itaque
+																		doloremque odio, eligendi delectus vitae.
+                                                                                    </p>
+
+                                                                                    <span
+                                                                                        class="font-size-12 font-weight-medium text-secondary">
+                                                                                        <i class="mdi mdi-clock-outline"></i>1 hrs
+																		ago...
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <a href="javscript:void(0)"
+                                                                            class="media media-message media-notification event-active">
+
+                                                                            <div
+                                                                                class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-info text-white">
+                                                                                <i class="mdi mdi-calendar-check font-size-20"></i>
+                                                                            </div>
+
+                                                                            <div class="media-body d-flex justify-content-between">
+                                                                                <div class="message-contents">
+                                                                                    <h4 class="title">Upcomming event added</h4>
+                                                                                    <p class="last-msg font-size-14">
+                                                                                        03/Jan/2020 (1pm -
+																		2pm)
+                                                                                    </p>
+
+                                                                                    <span
+                                                                                        class="font-size-12 font-weight-medium text-secondary">
+                                                                                        <i class="mdi mdi-clock-outline"></i>10 min
+																		ago...
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+
+                                                                    <li>
+                                                                        <a href="javscript:void(0)"
+                                                                            class="media media-message media-notification">
+
+                                                                            <div
+                                                                                class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-warning text-white">
+                                                                                <i class="mdi mdi-chart-areaspline font-size-20"></i>
+                                                                            </div>
+
+                                                                            <div class="media-body d-flex justify-content-between">
+                                                                                <div class="message-contents">
+                                                                                    <h4 class="title">Yearly Sales report</h4>
+                                                                                    <p class="last-msg font-size-14">
+                                                                                        Lorem ipsum dolor
+																		sit, amet consectetur adipisicing elit. Nam
+																		itaque doloremque odio, eligendi delectus vitae.
+                                                                                    </p>
+
+                                                                                    <span
+                                                                                        class="font-size-12 font-weight-medium text-secondary">
+                                                                                        <i class="mdi mdi-clock-outline"></i>1 hrs
+																		ago...
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <div class="tab-pane fade" id="profile2" role="tabpanel">
+                                                                <ul class="list-unstyled" data-simplebar style="height: 360px">
+                                                                    <li>
+                                                                        <a href="javscript:void(0)"
+                                                                            class="media media-message media-notification">
+                                                                            <div class="position-relative mr-3">
+                                                                                <img class="rounded-circle" src="assets/img/user/u6.jpg"
+                                                                                    alt="Image">
+                                                                                <span class="status away"></span>
+                                                                            </div>
+                                                                            <div class="media-body d-flex justify-content-between">
+                                                                                <div class="message-contents">
+                                                                                    <h4 class="title">Hardiko</h4>
+                                                                                    <p class="last-msg">
+                                                                                        Donec mattis augue a nisl
+																		consequat, nec imperdiet ex rutrum. Fusce et
+																		vehicula enim. Sed in enim eu odio vehic.
+                                                                                    </p>
+
+                                                                                    <span
+                                                                                        class="font-size-12 font-weight-medium text-secondary">
+                                                                                        <i class="mdi mdi-clock-outline"></i>1 hrs
+																		ago...
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <div class="tab-pane fade" id="contact2" role="tabpanel">
+                                                                <ul class="list-unstyled" data-simplebar style="height: 360px">
+                                                                    <li>
+                                                                        <a href="javscript:void(0)"
+                                                                            class="media media-message media-notification event-active">
+
+                                                                            <div
+                                                                                class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-info text-white">
+                                                                                <i class="mdi mdi-calendar-check font-size-20"></i>
+                                                                            </div>
+
+                                                                            <div class="media-body d-flex justify-content-between">
+                                                                                <div class="message-contents">
+                                                                                    <h4 class="title">Upcomming event added</h4>
+                                                                                    <p class="last-msg font-size-14">
+                                                                                        03/Jan/2020 (1pm -
+																		2pm)
+                                                                                    </p>
+
+                                                                                    <span
+                                                                                        class="font-size-12 font-weight-medium text-secondary">
+                                                                                        <i class="mdi mdi-clock-outline"></i>10 min
+																		ago...
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="right-sidebar-in right-sidebar-2-menu">
+                                                <i class="mdi mdi-settings-outline mdi-spin"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </header>
+            </asp:ContentPlaceHolder>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                <!-- Footer -->
+                <footer class="footer mt-auto">
+                    <div class="copyright bg-white">
+                        <p>
+                            Copyright &copy; <span id="ec-year"></span><a class="text-primary"
+                                href="https://themeforest.net/user/ashishmaraviya" target="_blank">Ekka Admin Dashboard</a>. All Rights Reserved.
+                        </p>
+                    </div>
+                </footer>
+        </div>
+        <!-- End Page Wrapper -->
+        </div>
+        <!-- End Wrapper -->
+
+        <!-- Common Javascript -->
+        <script src="assets/plugins/jquery/jquery-3.5.1.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/plugins/simplebar/simplebar.min.js"></script>
+        <script src="assets/plugins/jquery-zoom/jquery.zoom.min.js"></script>
+        <script src="assets/plugins/slick/slick.min.js"></script>
+
+        <!-- Chart -->
+        <script src="assets/plugins/charts/Chart.min.js"></script>
+        <script src="assets/js/chart.js"></script>
+
+        <!-- Google map chart -->
+        <script src="assets/plugins/charts/google-map-loader.js"></script>
+        <script src="assets/plugins/charts/google-map.js"></script>
+
+        <!-- Date Range Picker -->
+        <script src="assets/plugins/daterangepicker/moment.min.js"></script>
+        <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+        <script src="assets/js/date-range.js"></script>
+
+        <!-- Option Switcher -->
+        <script src="assets/plugins/options-sidebar/optionswitcher.js"></script>
+
+        <!-- Ekka Custom -->
+        <script src="assets/js/ekka.js"></script>
+
+        <!-- Custom JavaScript for Enhanced Functionality -->
+        <script>
+            // Sidebar Toggle
+            document.getElementById('sidebar-toggler').addEventListener('click', function () {
+                document.querySelector('.ec-left-sidebar').classList.toggle('show');
+            });
+
+            // Dropdown Toggle
+            document.querySelectorAll('.has-sub > a').forEach(function (item) {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const parent = this.parentElement;
+                    parent.classList.toggle('show');
+                });
+            });
+
+            // User Dropdown
+            document.querySelector('.user-menu button').addEventListener('click', function () {
+                this.parentElement.classList.toggle('show');
+            });
+
+            // Notifications Dropdown
+            document.querySelector('.notifications-menu button').addEventListener('click', function () {
+                this.parentElement.classList.toggle('show');
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.user-menu')) {
+                    document.querySelector('.user-menu').classList.remove('show');
+                }
+                if (!e.target.closest('.notifications-menu')) {
+                    document.querySelector('.notifications-menu').classList.remove('show');
+                }
+            });
+
+            // Tab functionality
+            document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (tab) {
+                tab.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Remove active from all tabs and panes
+                    document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-pane').forEach(p => {
+                        p.classList.remove('show', 'active');
+                    });
+
+                    // Add active to clicked tab
+                    this.classList.add('active');
+
+                    // Show corresponding pane
+                    const target = this.getAttribute('data-bs-target');
+                    const pane = document.querySelector(target);
+                    if (pane) {
+                        pane.classList.add('show', 'active');
+                    }
+                });
+            });
+
+            // Set current year in footer
+            document.getElementById('ec-year').textContent = new Date().getFullYear();
+        </script>
+</body>
+
+</html>
+</asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
+                                                <ul class="sub-menu" id="vendors" data-parent="#sidebar-menu">
+                                                    <li class="">
+                                                        <a class="sidenav-item-link" href="vendor-card.aspx">
+                                                            <span class="nav-text">Vendor Grid</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <a class="sidenav-item-link" href="vendor-list.aspx">
+                                                            <span class="nav-text">Vendor List</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a class="sidenav-item-link" href="vendor-profile.aspx">
+                                                            <span class="nav-text">Vendors Profile</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+</div>
+                                        </li>
+
+                                        <!-- Users -->
+<li class="has-sub">
+    <a class="sidenav-item-link" href="javascript:void(0)">
+        <i class="mdi mdi-account-group"></i>
+        <span class="nav-text">Users</span> <b class="caret"></b>
+    </a>
+    <div class="collapse">
+    
